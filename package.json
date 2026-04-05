@@ -1,6 +1,6 @@
 {
   "name": "r2-uploader",
-  "version": "1.5.1",
+  "version": "1.6.1",
   "type": "module",
   "scripts": {
     "start": "node server.js"
@@ -10,8 +10,6 @@
     "dotenv": "^16.4.5",
     "fastify": "^4.28.0",
     "mime-types": "^2.1.35",
-    "swagger-stats": "^0.99.7",
-    "@fastify/express": "^3.0.0",
     "uuid": "^9.0.1"
   }
 }
