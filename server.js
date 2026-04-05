@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import Fastify from 'fastify'
+import fastifyExpress from '@fastify/express'
 import { Readable, Transform } from 'node:stream'
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import { v4 as uuidv4 } from 'uuid'
@@ -7,7 +8,7 @@ import mime from 'mime-types'
 import swaggerStats from 'swagger-stats'
 
 const SERVICE_NAME = 'r2-uploader'
-const SERVICE_VERSION = process.env.npm_package_version || '1.5.0'
+const SERVICE_VERSION = process.env.npm_package_version || '1.5.1'
 const ROUTE_UPLOAD = '/upload-from-url'
 
 const config = {
@@ -105,6 +106,8 @@ const swaggerSpec = {
 }
 
 await app.register(async function monitoredRoutes(fastify) {
+  await fastify.register(fastifyExpress)
+
   await fastify.register(swaggerStats.getFastifyPlugin, {
     swaggerSpec,
     uriPath: '/swagger-stats',
